@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Table Output & Processing</title>
+  <style>
+    :root { font-family: system-ui, Arial, sans-serif; }
+    body { margin: 2rem; color: #111; }
+    h1 { margin: 0 0 0.25rem; }
+    h2 { margin-top: 2rem; }
+    .note { color:#444; margin-bottom: 1rem; }
+    table { border-collapse: collapse; width: 600px; max-width: 100%; }
+    th, td { border: 2px solid #333; padding: 12px 16px; text-align: left; }
+    th { background: #f3f3f3; font-size: 1.05rem; }
+    .two-col { width: 600px; max-width: 100%; }
+    .caption { margin: .5rem 0 1rem; font-style: italic; color:#333; }
+  </style>
+</head>
+<body>
+  <h1>Table Output & Processing</h1>
+  <p class="note">Table 1 is rendered exactly; Table 2 is computed from Table 1 values.</p>
+
+  <h2>Table 1</h2>
+  <div class="caption">Index # and Value</div>
+  <table id="table1"></table>
+
+  <h2>Table 2</h2>
+  <div class="caption">Computed values (Alpha = A5 + A20, Beta = A15 / A7, Charlie = A13 * A12)</div>
+  <table id="table2" class="two-col"></table>
+
+  <script>
+    // ---- Source data for Table 1 (from your screenshot) ----
+    const data = [
+      ["A1",41],["A2",18],["A3",21],["A4",63],["A5",2],
+      ["A6",53],["A7",5],["A8",57],["A9",60],["A10",93],
+      ["A11",28],["A12",3],["A13",90],["A14",39],["A15",80],
+      ["A16",88],["A17",49],["A18",60],["A19",26],["A20",28]
+    ];
+
+    // Helper: convert Table 1 array into an object like { A1: 41, ... }
+    const A = Object.fromEntries(data);
+
+    // ---- Render Table 1 ----
+    const t1 = document.getElementById("table1");
+    t1.innerHTML = `
+      <thead>
+        <tr><th>Index #</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        ${data.map(([idx, val]) => `<tr><td>${idx}</td><td>${Number(val)}</td></tr>`).join("")}
+      </tbody>
+    `;
+
+    // ---- Compute Table 2 values (ensure they are numbers, not strings) ----
+    const alpha   = Number(A.A5)  + Number(A.A20);
+    const beta    = Number(A.A15) / Number(A.A7);
+    const charlie = Number(A.A13) * Number(A.A12);
+
+    // If you ever need to force to integer (e.g., for non-integer divisions), use:
+    // const beta = Math.trunc(Number(A.A15) / Number(A.A7));
+
+    // ---- Render Table 2 ----
+    const t2 = document.getElementById("table2");
+    t2.innerHTML = `
+      <thead>
+        <tr><th>Category</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alpha</td><td>${alpha}</td></tr>
+        <tr><td>Beta</td><td>${beta}</td></tr>
+        <tr><td>Charlie</td><td>${charlie}</td></tr>
+      </tbody>
+    `;
+  </script>
+</body>
+</html>
