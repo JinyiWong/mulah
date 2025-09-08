@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title Table Output & Processing
+    link(rel="stylesheet", href="/style.css")
+  body
+    h1 Table Output & Processing
+    p.note Table 1 is rendered exactly; Table 2 is computed from Table 1 values.
+
+    h2 Table 1
+    div.caption Index # and Value
+    table
+      thead
+        tr
+          th Index #
+          th Value
+      tbody
+        each row in data
+          tr
+            td= row[0]
+            td= row[1]
+
+    h2 Table 2
+    div.caption Computed values (Alpha = A5 + A20, Beta = A15 / A7, Charlie = A13 * A12)
+    table.two-col
+      thead
+        tr
+          th Category
+          th Value
+      tbody
+        each row in table2
+          tr
+            td= row[0]
+            td= row[1]

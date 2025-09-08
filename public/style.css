@@ -1,0 +1,80 @@
+:root {
+  font-family: system-ui, Arial, sans-serif;
+  --primary: #4a90e2;   /* blue */
+  --secondary: #f5f7fa; /* light gray background */
+  --border: #ccc;
+}
+
+body {
+  margin: 2rem;
+  color: #111;
+  background: var(--secondary);
+}
+
+h1 {
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-size: 1.8rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  color: #333;
+  border-left: 5px solid var(--primary);
+  padding-left: 0.5rem;
+}
+
+.note {
+  color: #666;
+  margin-bottom: 1rem;
+  background: #fff3cd;
+  padding: 10px 14px;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 1.5rem;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  text-align: left;
+}
+
+th {
+  background: var(--primary);
+  color: white;
+  font-size: 1.05rem;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+tbody tr:hover {
+  background: #eef6ff;
+  transition: background 0.3s ease;
+}
+
+.caption {
+  margin: .5rem 0 1rem;
+  font-style: italic;
+  color: #444;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  table, th, td {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+}
